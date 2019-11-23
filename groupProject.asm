@@ -8,6 +8,9 @@
 	stringPassUnmatch:.asciiz "Password Not Match"
 	stringNewLine: .asciiz "\n"
 	stringDoubleNewLine: .asciiz "\n\n"
+	stringOptionList: .asciiz "\n\nCar Rental System \n--------------------------------- \nPress a button to continue: \n\n1)Reserved Cars \n2)Collected Cars \n3)Returned Cars \n4) Display All Car \n5)Exit"
+	                   
+	
 		
 	# For Validation
 	logUserAuth:	.asciiz "staff\n"
@@ -74,8 +77,13 @@ main:
 	j while
 		
 	# test
-		
-
+	
+	afterUserAuth:
+			
+	# Print LogPass
+	li $v0,4
+	la $a0,stringOptionList
+	syscall
 
 	
 	j exit
@@ -88,7 +96,7 @@ passCont:
 	la $a0,stringPassMatch
 	syscall
 	
-	j exit
+	j afterUserAuth
 
 
 # Prints a new Line
